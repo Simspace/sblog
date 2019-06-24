@@ -95,7 +95,7 @@ def login():
         ).fetchone()
 
         if user is None:
-            error = "Incorrect username."
+            error = "Incorrect username. please register"
         elif not check_password_hash(user["password"], password):
             error = "Incorrect password."
 
@@ -106,8 +106,13 @@ def login():
             return redirect(url_for("index"))
 
         flash(error)
+        # if no user, redirect to register, not great security though...
+        # done per https://github.com/gotrecha/sblog/issues/3
+        if user is None:
+            return redirect(url_for("auth.register"))
 
     return render_template("auth/login.html")
+
 
 
 @bp.route("/logout")

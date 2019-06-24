@@ -69,6 +69,15 @@ nav ul li a, nav ul li span, header .action {
   margin: 1rem 0 0.25rem 0;
 }
 
+.weather{
+    display: flex;
+}
+
+.weather ul{
+    display: block;
+    list-style: none;
+}
+
 .flash {
   margin: 1em 0;
   padding: 1em;
@@ -131,4 +140,8 @@ input.danger {
 input[type=submit] {
   align-self: start;
   min-width: 10em;
+}
+
+.hide {
+    display:none;
 }

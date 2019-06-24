@@ -16,7 +16,11 @@ def index():
         " FROM post p JOIN user u ON p.author_id = u.id"
         " ORDER BY created DESC"
     ).fetchall()
-    return render_template("blog/index.html", posts=posts)
+    ## Check to see if there are users, if not go to regsitration not index
+    user_count = db.execute("SELECT count(*) FROM USER").fetchone()
+    if user_count[0] > 0:
+        return render_template("blog/index.html", posts=posts)
+    return redirect(url_for("auth.register"))
 
 
 def get_post(id, check_author=True):
